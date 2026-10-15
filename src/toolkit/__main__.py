@@ -3,7 +3,7 @@ import sys
 
 from .calculator import solve
 from .converter import convert
-from .errors import *
+from .errors import ToolkitError
 
 def main() -> float:
     parser = argparse.ArgumentParser(description="Калькулятор и конвертер")
@@ -36,3 +36,7 @@ def main() -> float:
 
 if __name__ == "__main__":
     main()
+
+
+#python -m pytest --cov=src/toolkit --cov-report=term-missing
+#команда в терминал для проверки покрытия тестами

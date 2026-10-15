@@ -1,5 +1,6 @@
-from .errors import *
-
+from .errors import (Invalid_Symbol_Error,
+                     Invalid_Expression_Error,
+                     Division_By_Zero_Error)
 
 #разбиваем выражение на строки
 def tokenization(expression: str) -> list[str]:
@@ -31,7 +32,7 @@ def tokenization(expression: str) -> list[str]:
 
     return tokens
 
-
+#проверка токенов
 def validation(tokens: list[str]) -> None:
     if not tokens:
         raise Invalid_Expression_Error("Выражение пустое")
@@ -62,7 +63,7 @@ def unar(token: list[str]) -> list[str]:
         i += 1
     return token
 
-
+#юзлес
 # def find_priority_operations(calculation: list[str]):
 #     i = 0
 #     while i < len(calculation):
@@ -80,6 +81,8 @@ def unar(token: list[str]) -> list[str]:
 #         i = i + 1
 #     return calculation
 
+
+#переводит выражение в польскую нотацию
 def RPN(tokens: list[str]) -> list[str]:
     output = []
     operators = []
@@ -104,6 +107,7 @@ def RPN(tokens: list[str]) -> list[str]:
         tmp = operators.pop()
         output.append(tmp)
     return output
+
 
 def solve_RPN(k: list[str]) -> float:
     st = []
@@ -136,6 +140,7 @@ def solve_RPN(k: list[str]) -> float:
 
     return st[0]
 
+#соединяем все функции, разделяет, проверяет, вычисляет
 def solve(token: str) -> float:
     z = unar(tokenization(token))
     validation(z)

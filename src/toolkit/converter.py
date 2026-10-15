@@ -1,7 +1,10 @@
 from math import isfinite
-from src.toolkit.errors import *
+from src.toolkit.errors import (ToolkitError,
+                                Unknown_Unit_Error,
+                                Invalid_Temperature_Error,
+                                Incompatible_Units_Error)
 
-
+#коэффициенты перевода единиц длины массы и обозначение температурных шкал
 length = {
     "mm": 0.001,
     "cm": 0.01,
@@ -14,6 +17,7 @@ mass = {
 
 temperature = {"c", "f", "k"}
 
+#сначала проверяет с чем имеет дело потом переводит длину массу или температуру
 def convert(value: float, unit1: str, unit2: str) -> float:
     unit1 = unit1.lower()
     unit2 = unit2.lower()
