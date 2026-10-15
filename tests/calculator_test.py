@@ -32,6 +32,35 @@ def test_invalid_operators():
     with pytest.raises(Invalid_Expression_Error):
         solve("2*/3")
 
+def test_subtraction():
+    assert solve("10-3-2") == pytest.approx(5.0)
+
+
+def test_division_then_addition():
+    assert solve("10/4+1") == pytest.approx(3.5)
+
+
+def test_spaces():
+    assert solve(" 2 + 3 * 4 ") == pytest.approx(14.0)
+
+
+def test_unary_plus():
+    assert solve("+2*3") == pytest.approx(6.0)
+
+
+def test_operator_at_start():
+    with pytest.raises(Invalid_Expression_Error):
+        solve("*2")
+
+
+def test_missing_operator():
+    with pytest.raises(Invalid_Expression_Error):
+        solve("2 3")
+
+
+def test_operator_at_end():
+    with pytest.raises(Invalid_Expression_Error):
+        solve("2*")
 
 def test_division_by_zero():
     with pytest.raises(Division_By_Zero_Error):

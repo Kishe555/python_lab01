@@ -9,6 +9,31 @@ def test_length():
 def test_mass():
     assert convert(1.5, "kg", "g") == pytest.approx(1500.0)
 
+def test_fahrenheit_to_celsius():
+    assert convert(32, "f", "c") == pytest.approx(0.0)
+
+
+def test_kelvin_to_fahrenheit():
+    assert convert(273.15, "k", "f") == pytest.approx(32.0)
+
+
+def test_kelvin_to_kelvin():
+    assert convert(300, "k", "k") == pytest.approx(300.0)
+
+
+def test_unknown_source_unit():
+    with pytest.raises(Unknown_Unit_Error):
+        convert(1, "abc", "m")
+
+
+def test_fahrenheit_below_absolute_zero():
+    with pytest.raises(Invalid_Temperature_Error):
+        convert(-460, "f", "k")
+
+
+def test_kelvin_below_absolute_zero():
+    with pytest.raises(Invalid_Temperature_Error):
+        convert(-1, "k", "c")
 
 def test_temperature():
     assert convert(0, "c", "f") == pytest.approx(32.0)
