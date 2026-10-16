@@ -58,7 +58,7 @@ def unar(token: list[str]) -> list[str]:
     i = 0
     while i < len(token):
         if token[i] in "+-":
-            if (i == 0 or token[i-1] in "+-*/") and token[i+1] in "0123456789":
+            if (i == 0 or token[i-1] in "+-*/") and token[i+1].isdigit:
                 token[i: i + 2] = [token[i] + token[i + 1]]
         i += 1
     return token
