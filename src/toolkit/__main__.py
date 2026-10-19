@@ -26,7 +26,7 @@ def main() -> float:
 
         else:
             result = convert(args.value, args.unit1, args.unit2)
-        print(result)
+        print(f"{result:.2f}")
 
     except ToolkitError as e:
 
