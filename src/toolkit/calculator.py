@@ -58,10 +58,16 @@ def unar(token: list[str]) -> list[str]:
     i = 0
     while i < len(token):
         if token[i] in "+-":
-            if (i == 0 or token[i-1] in "+-*/") and token[i+1].isdigit:
-                token[i: i + 2] = [token[i] + token[i + 1]]
+            if (i == 0 or token[i - 1] in "+-*/") and i + 1 < len(token):
+                try:
+                    float(token[i + 1])
+                except ValueError:
+                    pass
+                else:
+                    token[i:i + 2] = [token[i] + token[i + 1]]
         i += 1
     return token
+
 
 #юзлес
 # def find_priority_operations(calculation: list[str]):
