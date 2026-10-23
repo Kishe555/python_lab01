@@ -1,5 +1,5 @@
 from math import isfinite
-from src.toolkit.errors import (ToolkitError,
+from .errors import (ToolkitError,
                                 Unknown_Unit_Error,
                                 Invalid_Temperature_Error,
                                 Incompatible_Units_Error)
