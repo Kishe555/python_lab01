@@ -1,6 +1,9 @@
 import pytest
+
 from toolkit.converter import convert
-from toolkit.errors import *
+from toolkit.errors import (Unknown_Unit_Error, 
+                            Invalid_Temperature_Error, 
+                            Incompatible_Units_Error)
 
 def test_length():
     assert convert(1000, "mm", "m") == pytest.approx(1.0)
