@@ -5,7 +5,7 @@ from .calculator import solve
 from .converter import convert
 from .errors import ToolkitError
 
-def main() -> float:
+def main() -> None:
     parser = argparse.ArgumentParser(description="Калькулятор и конвертер")
 
     commands = parser.add_subparsers(dest="command", required=True)
@@ -26,7 +26,7 @@ def main() -> float:
 
         else:
             result = convert(args.value, args.unit1, args.unit2)
-        print(f"{result:.2f}")
+        print(f"{result:.15g}")
 
     except ToolkitError as e:
 

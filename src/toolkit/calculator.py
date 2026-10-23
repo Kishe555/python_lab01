@@ -37,14 +37,21 @@ def validation(tokens: list[str]) -> None:
     if not tokens:
         raise Invalid_Expression_Error("Выражение пустое")
 
-    if tokens[0] in '*/':
+    if tokens[0] in '+-*/':
         raise Invalid_Expression_Error("Первым ожидалось число")
 
+    for token in tokens:
+        if token not in "+-*/":
+            try:
+                float(token)
+            except ValueError:
+                raise Invalid_Expression_Error("Неверная запись числа")
+
     for i in range(len(tokens) -1):
-        if tokens[i].isdigit() and tokens[i+1].isdigit():
+        if tokens[i] not in "+-*/" and tokens[i+1]not in "+-*/":
             raise Invalid_Expression_Error("Ожидалась операция")
 
-        if tokens[i] in '+-*/' and tokens[i+1] in '*/':
+        if tokens[i] in '+-*/' and tokens[i+1] in '+-*/':
             raise Invalid_Expression_Error("Ожидалось число")
 
     if tokens[-1] in '+-*/':
@@ -127,7 +134,7 @@ def solve_RPN(k: list[str]) -> float:
             first = float(st.pop())
             second = float(st.pop())
             if first == 0:
-                raise Division_By_Zero_Error()
+                raise Division_By_Zero_Error("Деление на ноль")
             z = second / first
             st.append(z)
         elif i in "+":
