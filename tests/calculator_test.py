@@ -1,6 +1,9 @@
 import pytest
-from src.toolkit.calculator import *
-from src.toolkit.errors import *
+
+from toolkit.calculator import solve 
+from toolkit.errors import (Invalid_Expression_Error, 
+                            Invalid_Symbol_Error, 
+                            Division_By_Zero_Error)
 
 def test_priority():
     assert solve("2+3*4") == 14
