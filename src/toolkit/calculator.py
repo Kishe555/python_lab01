@@ -64,8 +64,7 @@ def validation(tokens: list[str]) -> None:
 def unar(token: list[str]) -> list[str]:
     i = 0
     while i < len(token):
-        if token[i] in "+-":
-            if (i == 0 or token[i - 1] in "+-*/") and i + 1 < len(token):
+        if token[i] in "+-" and (i == 0 or token[i - 1] in "+-*/") and i + 1 < len(token):
                 try:
                     float(token[i + 1])
                 except ValueError:
