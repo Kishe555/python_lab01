@@ -1,6 +1,6 @@
 import pytest
-from src.toolkit.converter import convert
-from src.toolkit.errors import *
+from toolkit.converter import convert
+from toolkit.errors import *
 
 def test_length():
     assert convert(1000, "mm", "m") == pytest.approx(1.0)
